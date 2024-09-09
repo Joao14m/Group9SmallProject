@@ -30,6 +30,8 @@
             $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["username"], $inData["password"]);
 
             $stmt->execute();
+
+            sendResultInfoAsJson('{"message": "User created."}');
         }
 
         // Finished, close all connections

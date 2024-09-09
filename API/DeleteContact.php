@@ -9,8 +9,8 @@
         returnWithError($conn->connect_error);
     }
     else {
-        $stmt = $conn->prepare("DELETE FROM Contacts WHERE name = ? AND email = ? AND phone = ?");
-        $stmt->bind_param("sss", $inData["name"], $inData["email"], $inData["phone"]);
+        $stmt = $conn->prepare("DELETE FROM Contacts WHERE name = ? AND email = ? AND phone = ? AND user_ID = ?");
+        $stmt->bind_param("sss", $inData["name"], $inData["email"], $inData["phone"], $inData["user_ID"]);
 
         $stmt->execute();
 
