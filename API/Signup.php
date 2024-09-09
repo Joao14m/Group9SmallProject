@@ -14,7 +14,7 @@
     else {
         // Check if user already exists via username
         $stmt = $conn->prepare("SELECT * FROM Users WHERE username = ?");
-        $stmt->bind_param("s", inData[username]);
+        $stmt->bind_param("s", $inData["username"]);
 
         $stmt->execute();
 
@@ -27,7 +27,7 @@
         else {
             // Create new user
             $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, username, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", inData["firstName"], inData["lastName"], inData["username"], inData["password"]);
+            $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["username"], $inData["password"]);
 
             $stmt->execute();
         }

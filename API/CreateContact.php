@@ -14,7 +14,7 @@
     else {
         // Create new contact
         $stmt = $conn->prepare("INSERT INTO Contacts (name, email, phone) VALUES(?, ?, ?)");
-        $stmt->bind_param("sss", inData["name"], inData["email"], inData["phone"]);
+        $stmt->bind_param("sss", $inData["name"], $inData["email"], $inData["phone"]);
 
         $stmt->execute();
 
