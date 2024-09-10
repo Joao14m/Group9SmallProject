@@ -13,10 +13,12 @@
     }
     else {
         // Create new contact
-        $stmt = $conn->prepare("INSERT INTO Contacts (name, email, phone) VALUES(?, ?, ?)");
-        $stmt->bind_param("sss", inData["name"], inData["email"], inData["phone"]);
+        $stmt = $conn->prepare("INSERT INTO Contacts (user_ID, name, email, phone) VALUES(?, ?, ?, ?)");
+        $stmt->bind_param("isss", $inData["user_ID"] , $inData["name"], $inData["email"], $inData["phone"]);
 
         $stmt->execute();
+
+        sendResultInfoAsJson('{"message": "Contact created."}');
 
         //Finished, close connections
         $stmt->close();
