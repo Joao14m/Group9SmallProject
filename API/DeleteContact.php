@@ -3,7 +3,7 @@
     // Get input data
     $inData = getRequestData();
 
-    $con = new mysqli("localhost", "username", "password", "SmallProject");
+    $con = new mysqli("localhost", "MasterUser", "smallproject", "SmallProject");
 
     if($conn->connect_error){
         returnWithError($conn->connect_error);

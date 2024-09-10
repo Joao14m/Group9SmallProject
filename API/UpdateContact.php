@@ -3,8 +3,8 @@
     // Get input data
     $inData = getRequestData();
 
-    // Connect to database (placeholder login)
-    $conn = new mysqli("localhost", "username", "password", "SmallProject");
+    // Connect to database
+    $conn = new mysqli("localhost", "MasterUser", "smallproject", "SmallProject");
 
     // Check if connection was successful
     if ($conn->connect_error) {
