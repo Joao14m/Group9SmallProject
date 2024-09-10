@@ -13,8 +13,8 @@
     }
     else {
         //Update contact info
-        $stmt = $conn->prepare("UPDATE Contacts SET name = ?, email = ?, phone = ? WHERE user_ID = ?");
-        $stmt->bind_param("sssi", $inData["name"], $inData["email"], $inData["phone"], $inData["user_ID"]);
+        $stmt = $conn->prepare("UPDATE Contacts SET name = ?, email = ?, phone = ? WHERE ID = ?");
+        $stmt->bind_param("sssi", $inData["name"], $inData["email"], $inData["phone"], $inData["ID"]);
 
         $stmt->execute();
 
