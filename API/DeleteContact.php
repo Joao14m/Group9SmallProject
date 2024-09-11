@@ -37,3 +37,5 @@
         $retVal = '{"Error":"' . $err . '"}';
         sendResultInfoAsJson($retVal);
     }
+
+?>
