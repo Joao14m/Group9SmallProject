@@ -26,33 +26,33 @@
             <thead>
                 <tr>
                     <th>Select</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><input type="radio" name="contact" value="1"></td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
+                    <td>Name</td>
                     <td>Email</td>
+                    <td>Phone</td>
                 </tr>
                 <tr>
                     <td><input type="radio" name="contact" value="2"></td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
+                    <td>Name</td>
                     <td>Email</td>
+                    <td>Phone</td>
                 </tr>
             </tbody>
         </table>
     </section>
     <section class="contact-form">
         <div class="contact-form">
-            <input type="text" id="contact-first-name" placeholder="Contact First Name"required>
-            <input type="text" id="contact-last-name" placeholder="Contact Last name"required>
-            <input type="text" id="contact-email" placeholder="Contact Email"required>
-            <button type="button" onclick="DeleteContact(); createContact('contact-first-name', 'contact-last-name', 'contact-email')">Update Contact</button>
+            <input type="text" id="name" placeholder="Contact Name"required>
+            <input type="text" id="email" placeholder="Contact Email"required>
+            <input type="text" id="phone" placeholder="Contact Phone Number"required>
+            <button type="button" onclick="DeleteContact(); createContact('name', 'email', 'phone')">Update Contact</button>
             <!--how does the delete contact function work, what parameters will need to be passed. ASK BACK-END WHEN THEY DO IT-->
         </div>
     </section>
