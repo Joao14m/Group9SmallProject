@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="homestyles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="Create-contact.html">Create Contact</a></li>
+                <li><a href="Update-contact.html">Update Contact</a></li>
+                <li><a href="Retrieve-contact.html">Retrieve Contact</a></li>
+                <li><a href="Delete-contact.html">Delete Contact</a></li>
+                <li><a href="index.html">Log Out</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <h1>
+        Create a contact using the table below, once finished click the create contact button!
+    </h1>
+    <section>
+        <div class="contact-form">
+            <input type="text" id="contact-first-name" placeholder="Contact First Name"required>
+            <input type="text" id="contact-last-name" placeholder="Contact Last name"required>
+            <input type="text" id="contact-email" placeholder="Contact Email"required>
+            <button type="button" onclick="createContact('contact-first-name', 'contact-last-name', 'contact-email')">Create Contact</button>
+        </div>
+    </section>
+    <footer>
+        COP4331C small project group 9 fall 2024
+    </footer>
+</body>
+
+</html>
