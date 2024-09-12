@@ -26,7 +26,7 @@ function signup() {
 
     try{
         xhr.onreadystatechange = function() {
-            if(this.readyState = 4 && this.status == 200){
+            if(this.readyState == 4 && this.status == 200){
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -34,7 +34,7 @@ function signup() {
                     return;
                 }
             
-                window.location.href = "index.html";
+                window.location.href = "home.html";
             }
         };
         xhr.send(jsonPayload);
@@ -66,7 +66,7 @@ function login() {
     
     try{
         xhr.onreadystatechange = function(){
-            if(this.readyState = 4 && this.status == 200){
+            if(this.readyState == 4 && this.status == 200){
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
@@ -77,7 +77,7 @@ function login() {
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
 
-                window.location.href = "index.html";
+                window.location.href = "home.html";
             }
         };
         xhr.send(jsonPayload);
@@ -96,7 +96,33 @@ function logout() {
 }
 
 function createContact() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
 
+    // document.getElementById("createContactResult").innerHTML = "";
+
+    let tmp = {userId:userId, name:name, phone:phone, email:email};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/CreateContact.' + extension;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try{
+        xhr.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                document.getElementById("createContactResult").innerHTML = "Contact has been created";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+
+    catch(err){
+        document.getElementById("createContactResult").innerHTML = err.message;
+    }
 }
 
 function retrieveContact() {
