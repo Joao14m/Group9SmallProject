@@ -4,7 +4,7 @@
     $inData = getRequestData();
 
     // Connect to the database
-    $con = new mysqli("localhost", "MasterUser", "smallproject", "SmallProject");
+    $conn = new mysqli("localhost", "MasterUser", "smallproject", "SmallProject");
 
     // Check connection
     if($conn->connect_error){
