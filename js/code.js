@@ -15,7 +15,7 @@ function signup() {
 
     // document.getElementById("signupResult").innerHTML = "";
 
-    let tmp = {firstName:firstName, lastName:lastName, login:login, password:password};
+    let tmp = {firstName:firstName, lastName:lastName, username:login, password:password};
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Signup.' + extension;
