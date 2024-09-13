@@ -34,7 +34,7 @@ function signup() {
                     return;
                 }
             
-                window.location.href = "home.html";
+                window.location.href = "index.html";
             }
         };
         xhr.send(jsonPayload);
