@@ -7,11 +7,11 @@ let lastName = "";
 
 function signup() {
     userId = 0;
-    firstName = document.getElementById("firstName").value;
-    lastName = document.getElementById("lastName").value;
+    firstName = document.getElementById("signup-first-name").value;
+    lastName = document.getElementById("signup-last-name").value;
 
-    let login = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let login = document.getElementById("signup-email").value;
+    let password = document.getElementById("signup-password").value;
 
     // document.getElementById("signupResult").innerHTML = "";
 
