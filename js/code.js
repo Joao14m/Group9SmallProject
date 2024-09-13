@@ -55,7 +55,7 @@ function login() {
 
     // document.getElementById("loginResult").innerHTML = "";
 
-    let tmp = {login:login, password:password};
+    let tmp = {username:login, password:password};
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Login.' + extension;
