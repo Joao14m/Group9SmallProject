@@ -12,13 +12,13 @@
     }
     else {
         // Delete contact
-        $stmt = $conn->prepare("DELETE FROM Contacts WHERE name = ? AND email = ? AND phone = ? AND user_ID = ?");
-        $stmt->bind_param("sss", $inData["name"], $inData["email"], $inData["phone"], $inData["user_ID"]);
+        $stmt = $conn->prepare("DELETE FROM Contacts WHERE name = '?' AND email = '?' AND phone = '?' AND user_ID = ?");
+        $stmt->bind_param("sssi", $inData["name"], $inData["email"], $inData["phone"], $inData["user_ID"]);
 
         $stmt->execute();
 
         // Check if contact was delete or it does not exist
-        if($stms->affected_rows > 0){
+        if($stmt->affected_rows > 0){
             sendResultInfoAsJson('{"message": "Contact deleted."}');
         } else {
             returnWithError("No contact found.");
