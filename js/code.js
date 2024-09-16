@@ -130,7 +130,36 @@ function retrieveContact() {
 }
 
 function updateContact() {
+    // PLACEHOLDER VALUE: can't get contact ID from the HTML right now
+    let ID = 0;
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+
+    // document.getElementById("updateContactResult").innerHTML = "";
+
+    let tmp = {ID:ID, name:name, phone:phone, email:email};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/UpdateContact.' + extension;
     
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try{
+        xhr.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+
+    catch(err){
+        document.getElementById("updateContactResult").innerHTML = err.message;
+    }
 }
 
 function deleteContact() {
