@@ -77,6 +77,8 @@ function login() {
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
 
+                saveCookie();
+
                 window.location.href = "home.html";
             }
         };
@@ -100,9 +102,11 @@ function createContact() {
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
 
+    readCookie();
+
     // document.getElementById("createContactResult").innerHTML = "";
 
-    let tmp = {userId:userId, name:name, phone:phone, email:email};
+    let tmp = {user_ID:userId, name:name, phone:phone, email:email};
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/CreateContact.' + extension;
@@ -114,7 +118,7 @@ function createContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                document.getElementById("createContactResult").innerHTML = "Contact has been created";
+                //document.getElementById("createContactResult").innerHTML = "Contact has been created";
             }
         };
         xhr.send(jsonPayload);
@@ -151,7 +155,7 @@ function updateContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
+                //document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
             }
         };
         xhr.send(jsonPayload);
@@ -164,4 +168,39 @@ function updateContact() {
 
 function deleteContact() {
     
+}
+
+function saveCookie() {
+    let minutes = 20;
+	let date = new Date();
+	date.setTime(date.getTime() + (minutes * 60 * 1000));	
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+}
+
+function readCookie() {
+	userId = -1;
+	let data = document.cookie;
+	let splits = data.split(",");
+
+	for(var i = 0; i < splits.length; i++) {
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+        
+		if(tokens[0] == "firstName") {
+			firstName = tokens[1];
+		}
+		else if(tokens[0] == "lastName") {
+			lastName = tokens[1];
+		}
+		else if(tokens[0] == "userId") {
+			userId = parseInt(tokens[1].trim());
+		}
+	}
+	
+	if( userId < 0 ) {
+		window.location.href = "index.html";
+	}
+	else {
+        //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	}
 }
