@@ -129,8 +129,36 @@ function createContact() {
     }
 }
 
-function retrieveContact() {
-    
+function retrieveContact(name) {
+    let srch = document.getElementById("nameRetrieve").value;
+    let nameList = "";
+    let tmp = {search:srch, user_ID:userId};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/RetrieveContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try{
+        xhr.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                let jsonObject = JSON.parse(xhr.responseText);
+                for(let i = 0; i < jsonObject.results.length; i++){
+                    nameList += jsonObject.results[i];
+                    if(i < jsonObject.results.length - 1){
+                        nameList += "<br />\r\n";
+                    }
+                }
+                document.getElementsByTagName("p")[0].innerHTML = nameList;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err){
+        document.getElementById("retrieveContactResult").innerHTML = err.message;
+    }
 }
 
 function updateContact() {
@@ -167,7 +195,37 @@ function updateContact() {
 }
 
 function deleteContact() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+
+    let tmp = {ID:ID, name:name, phone:phone, email:email};
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/DeleteContact.' + extension;
     
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try{
+        xhr.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+                let jsonObject = JSON.parse(xmlRequest.responseText);
+                if(jsonObject.error){
+                    document.getElementById("deleteContactResult").innerHTML = "Error: " + jsonObject.error;
+                } else {
+                    name.remove();
+                    phone.remove();
+                    email.remove();
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err){
+        document.getElementById("deleteContactResult").innerHTML = err.message;
+    }
 }
 
 function saveCookie() {
