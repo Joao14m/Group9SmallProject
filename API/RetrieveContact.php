@@ -5,6 +5,9 @@
 
     // Setting the variables
     $searchResults = "";
+    $phoneList = "";
+    $emailList = "";
+    $idList = "";
     $searchCount = 0;
 
     // Connect to the database
@@ -15,7 +18,7 @@
         returnWithError($conn->connect_error); // Failed connection
     } else {
         // Search the contact 
-        $stmt = $conn->prepare("SELECT name FROM Contacts WHERE name LIKE ? AND user_ID = ?");
+        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE name LIKE ? AND user_ID = ?");
 
         // Search pattern 
         $contactName = "%" . $inData["search"] . "%";
@@ -29,16 +32,22 @@
         while($row = $result->fetch_assoc()){
             if($searchCount > 0){
                 $searchResults .= ",";
+                $phoneList .= ",";
+                $emailList .= ",";
+                $idList .= ",";
             }
             $searchCount++;
             $searchResults .='"' . $row["name"] . '"';
+            $phoneList .='"' . $row["phone"] . '"';
+            $emailList .='"' . $row["email"] . '"';
+            $idList .='"' . $row["ID"] . '"';
         }
 
         // User was not found
         if($searchCount == 0){
             returnWithError("No Records Found");
         } else {
-            returnWithInfo($searchResults);
+            returnWithInfo($idList, $searchResults, $emailList, $phoneList);
         }
 
         // Close connections
@@ -65,9 +74,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $searchResults )
+	function returnWithInfo($idList, $searchResults, $emailList, $phoneList)
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		$retValue = '{"id":[' . $idList . '],"name":[' . $searchResults . '], "email":[' . $emailList . '] ,"phone":[' . $phoneList . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
