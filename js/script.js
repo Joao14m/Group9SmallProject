@@ -161,11 +161,29 @@ function retrieveContact() {
         xhr.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 let jsonObject = JSON.parse(xhr.responseText);
+                
+                const tableBody = document.getElementById("contact-table").querySelector('tbody');
+                
+                tableBody.innerHTML = "";
+                
                 for(let i = 0; i < jsonObject.name.length; i++){
+                    const row = tableBody.insertRow();
+                    
+                    const idCell = row.insertCell(0);
+                    const nameCell = row.insertCell(1);
+                    const emailCell = row.insertCell(2);
+                    const phoneCell = row.insertCell(3)
+                
                     nameList += jsonObject.name[i];
                     idList += jsonObject.id[i];
                     phoneList += jsonObject.phone[i];
                     emailList += jsonObject.email[i];
+                    
+                    nameCell.textContent = jsonObject.name[i];
+                    idCell.textContent = jsonObject.id[i];
+                    phoneCell.textContent = jsonObject.phone[i];
+                    emailCell.textContent = jsonObject.email[i];
+                    
                     if(i < jsonObject.name.length - 1){
                         nameList += "<br />\r\n";
                         idList +="<br />\r\n";
@@ -174,7 +192,6 @@ function retrieveContact() {
                     }
                 }
                 
-                document.getElementsByTagName("p").innerHTML = nameList;
             }
         };
         xhr.send(jsonPayload);
