@@ -25,34 +25,23 @@
         <table class="contact-table">
             <thead>
                 <tr>
-                    <th>Select</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th>ID</th>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Phone</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><input type="radio" name="contact" value="1"></td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
-                <tr>
-                    <td><input type="radio" name="contact" value="2"></td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
-            </tbody>
         </table>
     </section>
-    <section>
-        <input type="text" id="name" placeholder="Contact Name"required>
-        <input type="text" id="email" placeholder="Contact Email"required>
-        <input type="text" id="phone" placeholder="Contact Phone Number"required>
-        <button type="button" onclick="deleteContact()">Delete Contact</button>
-    </section>
+    <section class="contact-form">
+        <div class="contact-form">
+            <input type="text" id="name" placeholder="Contact Name"required>
+            <input type="text" id="email" placeholder="Contact Email"required>
+            <input type="text" id="phone" placeholder="Contact Phone Number"required>
+            <button type="button" onclick="deleteContact()">Delete Contact</button>
+            <div id="deleteResult"></div>
+        </div>
+        </section>
     <footer>
         COP4331C Small Project Group 9 Fall 2024
     </footer>

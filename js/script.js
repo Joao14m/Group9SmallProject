@@ -235,15 +235,21 @@ function updateContact() {
 }
 
 function deleteContact() {
+    readCookie();
+
+    if(userId < 0){
+          document.getElementById("deleteResult").innerHTML = "User does not exist";
+    }
+
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
 
-    let tmp = {ID:ID, name:name, phone:phone, email:email};
+    let tmp = {user_ID:userId, name:name, phone:phone, email:email};
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/DeleteContact.' + extension;
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -251,13 +257,14 @@ function deleteContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                let jsonObject = JSON.parse(xmlRequest.responseText);
+                let jsonObject = JSON.parse(xhr.responseText);
                 if(jsonObject.error){
                     document.getElementById("deleteContactResult").innerHTML = "Error: " + jsonObject.error;
                 } else {
-                    name.remove();
-                    phone.remove();
-                    email.remove();
+                    document.getElementById("name").value = "";
+                    document.getElementById("phone").value = "";
+                    document.getElementById("email").value = "";
+                                document.getElementById("deleteResult").innerHTML = "Contact Deleted";
                 }
             }
         };
