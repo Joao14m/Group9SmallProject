@@ -20,44 +20,43 @@
         </nav>
 
     </header>
-    <h1>Select a contact below to update, and update it using the boxes below!</h1>
+    <h1>Select a contact's ID and update its details by using the boxes below!</h1>
     <section class="contact-list">
-        <table class="contact-table">
+        <table id = "contact-table" class="contact-table">
             <thead>
                 <tr>
-                    <th>Select</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input type="radio" name="contact" value="1"></td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
-                <tr>
-                    <td><input type="radio" name="contact" value="2"></td>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
+            
             </tbody>
         </table>
     </section>
     <section class="contact-form">
         <div class="contact-form">
+            <input type="text" id="ID" placeholder="Contact ID"required>        
             <input type="text" id="name" placeholder="Contact Name"required>
             <input type="text" id="email" placeholder="Contact Email"required>
             <input type="text" id="phone" placeholder="Contact Phone Number"required>
-            <button type="button" onclick="updateContact()">Update Contact</button>
+            <button type="button" onclick="updateContact(); retrieveContact();">Update Contact</button>
+            <div id="updateContactResult"></div>            
         </div>
     </section>
     <footer>
         COP4331C Small Project Group 9 Fall 2024
     </footer>
+    <p id = nameRetrieve></p>
 </body>
-<script src="script.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		retrieveContact();
+	}, false);
+	</script>
 </html>

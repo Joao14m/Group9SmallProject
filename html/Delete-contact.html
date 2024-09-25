@@ -20,31 +20,44 @@
         </nav>
 
     </header>
-    <h1>Select a contact below to delete, click the delete button once you are ready to delete it!</h1>
+    <h1>Select a contact's ID and click the button below to delete it!</h1>
     <section class="contact-list">
-        <table class="contact-table">
+        <table id="contact-table" class="contact-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                 </tr>
             </thead>
+            <tbody>
+            
+            </tbody>
         </table>
     </section>
     <section class="contact-form">
-        <div class="contact-form">
-            <input type="text" id="name" placeholder="Contact Name"required>
-            <input type="text" id="email" placeholder="Contact Email"required>
-            <input type="text" id="phone" placeholder="Contact Phone Number"required>
-            <button type="button" onclick="deleteContact()">Delete Contact</button>
-            <div id="deleteResult"></div>
-        </div>
-        </section>
+	<div class="contact-form">
+        <!--	<input type="text" id="name" placeholder="Contact Name"required>
+        	<input type="text" id="email" placeholder="Contact Email"required>
+        	<input type="text" id="phone" placeholder="Contact Phone Number"required>
+        -->
+		<input type="text" id="userId" placeholder="ID" required>
+		<button type="button" onclick="deleteContact(); retrieveContact();">Delete Contact</button>
+		<div id="deleteResult"></div>
+	</div>    
+    </section>
     <footer>
         COP4331C Small Project Group 9 Fall 2024
     </footer>
+     <p id = nameRetrieve></p>
 </body>
-<script src="script.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		retrieveContact();
+	}, false);
+	</script>
 </html>

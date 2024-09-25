@@ -129,7 +129,7 @@ function createContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                //document.getElementById("createContactResult").innerHTML = "Contact has been created";
+                document.getElementById("createContactResult").innerHTML = "Contact has been created";
             }
         };
         xhr.send(jsonPayload);
@@ -202,9 +202,7 @@ function retrieveContact() {
 }
 
 function updateContact() {
-    // PLACEHOLDER VALUE: can't get contact ID from the HTML right now
-    let ID = 0;
-
+    let ID = document.getElementById("ID").value;;
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
@@ -223,7 +221,7 @@ function updateContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                //document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
+                document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
             }
         };
         xhr.send(jsonPayload);
@@ -235,21 +233,19 @@ function updateContact() {
 }
 
 function deleteContact() {
-    readCookie();
+    let contact = document.getElementById("userId").value;	 
 
-    if(userId < 0){
-          document.getElementById("deleteResult").innerHTML = "User does not exist";
+    if(contact == "" || isNaN(contact)){
+    	document.getElementById("deleteResult").innerHTML = "Invalid contact ID";
+    	return;
     }
 
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let email = document.getElementById("email").value;
+    let tmp = {ID: contact};    
 
-    let tmp = {user_ID:userId, name:name, phone:phone, email:email};
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/DeleteContact.' + extension;
-
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -259,12 +255,9 @@ function deleteContact() {
             if(this.readyState == 4 && this.status == 200){
                 let jsonObject = JSON.parse(xhr.responseText);
                 if(jsonObject.error){
-                    document.getElementById("deleteContactResult").innerHTML = "Error: " + jsonObject.error;
+                    document.getElementById("deleteResult").innerHTML = "Error: " + jsonObject.error;
                 } else {
-                    document.getElementById("name").value = "";
-                    document.getElementById("phone").value = "";
-                    document.getElementById("email").value = "";
-                                document.getElementById("deleteResult").innerHTML = "Contact Deleted";
+		                document.getElementById("deleteResult").innerHTML = "Contact Deleted";
                 }
             }
         };
@@ -308,4 +301,9 @@ function readCookie() {
 	else {
         //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
+}
+
+function getName() {
+  readCookie();
+  document.getElementById("headerName").innerHTML = firstName + " " + lastName;
 }

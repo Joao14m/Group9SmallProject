@@ -21,34 +21,35 @@
 
     </header>
     <h1>
-        Welcome, use the menu on the top of the page to perform an action to any contact!
+        Welcome, <div id = "headerName"></div>Use the menu on the top of the page to perform an action to any contact!
     </h1>
     <section class="contact-list">
-        <table class="contact-table">
+        <table id = "contact-table" class="contact-table">
             <thead>
                 <tr>
-                    <th>Name</td>
+                    <th>ID</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                </tr>
+            
             </tbody>
         </table>
     </section>
     <footer>
         COP4331C Small Project Group 9 Fall 2024
     </footer>
+    <p id = nameRetrieve></p>
 </body>
-<script src="script.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		retrieveContact();
+   getName();
+	}, false);
+	</script>
 </html>
