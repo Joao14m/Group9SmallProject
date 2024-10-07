@@ -221,7 +221,12 @@ function updateContact() {
     try{
         xhr.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200){
-                document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
+                let jsonObject = JSON.parse(xhr.responseText);
+                if(jsonObject.error){
+                        document.getElementById("updateContactResult").innerHTML = "Error: " + jsonObject.error;
+                }else {
+                        document.getElementById("updateContactResult").innerHTML = "Contact has been updated";
+                }
             }
         };
         xhr.send(jsonPayload);
